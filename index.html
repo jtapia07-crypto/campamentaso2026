@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Campamentazo 2026 🏕️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f4ecdc; --surface:#fffaf1; --surface-2:#f0e5cf; --ink:#2a2017; --muted:#7b6a57; --line:#e2d3b8;
+  --primary:#2f4d37; --primary-ink:#fff8ea; --accent:#e0701f; --accent-ink:#fff8ea; --accent-soft:#fbe3c8;
+  --good:#4f7a3a; --shadow:0 12px 30px -14px rgba(60,40,20,.35); --radius:20px;
+  --font-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-body:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111812; --surface:#1a241c; --surface-2:#223026; --ink:#f2e8d3; --muted:#b4a78f; --line:#2e3d31;
+    --primary:#9cc785; --primary-ink:#10190f; --accent:#f08a3c; --accent-ink:#1d1208; --accent-soft:#3a2a1c;
+    --good:#9cc785; --shadow:0 12px 30px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111812; --surface:#1a241c; --surface-2:#223026; --ink:#f2e8d3; --muted:#b4a78f; --line:#2e3d31;
+  --primary:#9cc785; --primary-ink:#10190f; --accent:#f08a3c; --accent-ink:#1d1208; --accent-soft:#3a2a1c;
+  --good:#9cc785; --shadow:0 12px 30px -14px rgba(0,0,0,.7);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--font-display);line-height:1.1;margin:0}
+p{margin:0}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:8px}
+.wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 18px}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:8px;height:54px}
+.brand{font-family:var(--font-display);font-weight:800;font-size:1.05rem;margin-right:auto;white-space:nowrap}
+.nav a.pill{padding:8px 13px;border-radius:99px;text-decoration:none;font-size:.88rem;font-weight:500;color:var(--ink);background:var(--surface-2)}
+.icon-btn{border:0;background:var(--surface-2);width:38px;height:38px;border-radius:99px;font-size:1rem}
+
+/* BANNER */
+.banner{display:none;padding:9px 16px;text-align:center;font-size:.85rem;font-weight:500}
+.banner.show{display:block}
+.banner.shared{background:color-mix(in srgb,var(--good) 18%,var(--bg));color:var(--ink)}
+.banner.local{background:var(--accent-soft);color:var(--ink)}
+.banner.ro{background:#f6d6d0;color:#5b1d12}
+:root[data-theme="dark"] .banner.ro{background:#4a2420;color:#ffd9d2}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .banner.ro{background:#4a2420;color:#ffd9d2}}
+body.ro .needs-write{opacity:.45;pointer-events:none}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;color:#f7ecd6;text-align:center;padding:46px 0 0;
+  background:radial-gradient(90% 55% at 50% 100%,rgba(224,112,31,.55) 0%,rgba(224,112,31,0) 70%),linear-gradient(180deg,#0d1812 0%,#18291f 55%,#233a2b 100%)}
+.hero::before{content:"";position:absolute;inset:0;opacity:.7;pointer-events:none;
+  background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 78% 12%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 38% 30%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 62% 24%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 90% 34%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 24% 8%,#fff 50%,transparent 51%)}
+.hero .wrap{position:relative;z-index:2}
+.kicker{display:inline-block;padding:6px 14px;border-radius:99px;background:rgba(255,248,234,.12);border:1px solid rgba(255,248,234,.22);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.hero h1{font-size:clamp(2.3rem,9vw,4.4rem);font-weight:800;margin:18px 0 12px;text-wrap:balance}
+.hero .lead{max-width:560px;margin:0 auto;font-size:1.05rem;color:#e9dcc2}
+.stats{display:flex;justify-content:center;gap:10px;margin:22px 0 6px;flex-wrap:wrap}
+.stat{min-width:92px;padding:10px 14px;border-radius:16px;background:rgba(255,248,234,.1);border:1px solid rgba(255,248,234,.18)}
+.stat b{display:block;font-family:var(--font-display);font-size:1.6rem}
+.stat span{font-size:.78rem;color:#e9dcc2}
+.cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:22px 0 30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:99px;border:0;font-weight:700;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,background .18s}
+.btn:active{transform:scale(.97)}
+.btn-fire{background:linear-gradient(135deg,#f2a03d,#e0701f);color:#2a1503;box-shadow:0 10px 24px -10px rgba(224,112,31,.9)}
+.btn-fire:hover{transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,248,234,.12);color:#fff8ea;border:1px solid rgba(255,248,234,.3)}
+.btn-primary{background:var(--primary);color:var(--primary-ink)}
+.btn-soft{background:var(--surface-2);color:var(--ink)}
+.flame{display:inline-block;animation:flicker 1.4s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes flicker{0%,100%{transform:scale(1) rotate(-2deg)}30%{transform:scale(1.12,1.2) rotate(2deg)}60%{transform:scale(.96,1.05) rotate(-1deg)}}
+.ember{position:absolute;bottom:20px;width:5px;height:5px;border-radius:50%;background:#f2a03d;opacity:0;z-index:1;animation:rise linear infinite;box-shadow:0 0 8px #f2a03d}
+@keyframes rise{0%{transform:translateY(0) translateX(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-320px) translateX(30px);opacity:0}}
+.scene{display:block;width:100%;height:120px;margin-top:-6px;position:relative;z-index:2}
+.scene .trees{fill:#0a130d}
+.scene .river{fill:#2f6f73}
+.scene .edge{fill:var(--bg)}
+
+/* LODGING IN HERO */
+.stay{margin-top:30px;text-align:left}
+.stay-title{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#e9dcc2;text-align:center;margin-bottom:12px}
+.stay-grid{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:720px){.stay-grid{grid-template-columns:repeat(3,1fr)}}
+.stay-card{padding:16px;border-radius:18px;background:rgba(255,248,234,.09);border:1px solid rgba(255,248,234,.18)}
+.stay-card .em{font-size:1.7rem}
+.stay-card h3{font-size:1.15rem;margin:4px 0}
+.stay-card p{font-size:.9rem;color:#e9dcc2}
+
+/* SECTIONS */
+section.block{padding:44px 0 8px}
+.sec-head{margin-bottom:20px}
+.sec-head .tag{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+.sec-head h2{font-size:clamp(1.7rem,6vw,2.4rem);margin:4px 0 6px}
+.sec-head p{color:var(--muted);max-width:620px}
+.grid2{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:860px){.grid2{grid-template-columns:1fr 1fr;align-items:start}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.card h3{font-size:1.25rem;margin-bottom:4px}
+.card .sub{color:var(--muted);font-size:.92rem;margin-bottom:14px}
+label.f{display:block;font-size:.85rem;font-weight:700;margin:12px 0 6px}
+.in{width:100%;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);min-height:46px;transition:border-color .15s,box-shadow .15s}
+.in:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
+textarea.in{resize:vertical;min-height:84px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{position:relative;display:block}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opt span{display:flex;flex-direction:column;gap:2px;padding:11px 12px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);font-size:.95rem;transition:all .15s;height:100%}
+.opt small{color:var(--muted);font-size:.78rem}
+.opt input:checked + span{border-color:var(--accent);background:var(--accent-soft);transform:translateY(-1px)}
+.opt input:focus-visible + span{outline:3px solid var(--accent);outline-offset:2px}
+.row-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+
+/* TALLY */
+.tally{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 14px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:99px;background:var(--surface-2);font-size:.82rem;font-weight:500}
+.chip.x{background:var(--accent-soft)}
+.chip .del{border:0;background:transparent;padding:0 0 0 2px;opacity:.6;font-size:.9rem}
+
+/* GUEST LIST */
+.count{font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1}
+.glist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.g{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;background:var(--bg);border:1px solid var(--line);animation:pop .35s ease both}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.av{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--c,#6f8f57);color:#fff;font-weight:700;font-size:.95rem;flex:none;border:2px solid var(--surface)}
+.g .meta{flex:1;min-width:0}
+.g .nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.g .nm em{font-style:normal;font-size:.72rem;background:var(--accent-soft);padding:2px 7px;border-radius:99px;margin-left:6px}
+.g .pl{font-size:.82rem;color:var(--muted);overflow-wrap:anywhere}
+.g .sl{font-size:.8rem;padding:4px 9px;border-radius:99px;background:var(--surface-2);white-space:nowrap}
+.mini{border:0;background:transparent;color:var(--muted);font-size:.78rem;padding:6px 8px;border-radius:8px}
+.mini:hover{background:var(--surface-2)}
+.empty{color:var(--muted);text-align:center;padding:18px 8px;font-size:.92rem}
+
+/* NOTES */
+.remind{margin-top:16px;border-style:dashed;background:color-mix(in srgb,var(--accent-soft) 60%,var(--surface))}
+.inline{display:flex;gap:8px}
+.inline .in{flex:1}
+.feed{display:grid;gap:10px;margin-top:16px}
+.note{padding:12px 14px;border-radius:16px;background:var(--bg);border:1px solid var(--line);animation:pop .35s ease both}
+.note .by{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);margin-bottom:4px}
+.note .by b{color:var(--ink)}
+.note p{overflow-wrap:anywhere;white-space:pre-wrap}
+
+/* ACTIVITIES */
+.acts{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.acts{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.acts{grid-template-columns:repeat(3,1fr)}}
+.act{display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:var(--radius);background:var(--surface);border:1.5px solid var(--line);box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+.act:hover{transform:translateY(-3px)}
+.act.on{border-color:var(--accent)}
+.act-top{display:flex;gap:12px}
+.act-e{font-size:2rem;line-height:1}
+.act h3{font-size:1.2rem}
+.act p{font-size:.88rem;color:var(--muted);margin-top:3px}
+.like{min-height:46px;border-radius:14px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);font-weight:700;display:flex;justify-content:center;align-items:center;gap:8px;transition:all .15s}
+.like.on{background:var(--primary);color:var(--primary-ink)}
+.like .n{background:var(--surface-2);color:var(--ink);border-radius:99px;padding:1px 9px;font-size:.82rem}
+.days{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.day{border:1.5px solid var(--line);background:var(--bg);border-radius:99px;min-height:36px;padding:0 12px;font-weight:700;font-size:.82rem;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
+.day i{font-style:normal;font-weight:500;color:var(--muted)}
+.day.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.day.on i{color:inherit}
+.lead-day{font-size:.78rem;color:var(--accent);font-weight:700;min-height:1.1em}
+.who{display:flex;align-items:center;min-height:32px}
+.who .av{width:28px;height:28px;font-size:.72rem;margin-left:-7px}
+.who .av:first-child{margin-left:0}
+.who .more{font-size:.78rem;color:var(--muted);margin-left:6px}
+
+/* FOOTER */
+footer{margin-top:50px;padding:34px 0 40px;text-align:center;background:linear-gradient(180deg,var(--bg),var(--surface-2));color:var(--muted);font-size:.9rem}
+footer .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+
+/* TOAST */
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translate(-50%,30px);opacity:0;pointer-events:none;background:#241a10;color:#fff3dc;padding:12px 18px;border-radius:99px;font-size:.9rem;max-width:calc(100% - 32px);text-align:center;transition:all .3s ease;z-index:50;box-shadow:0 10px 30px -8px rgba(0,0,0,.5)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* REVEAL */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <span class="brand">🏕️ Campamentazo</span>
+    <a class="pill" href="#rsvp">Asistencia</a>
+    <a class="pill" href="#actividades">Actividades</a>
+    <button class="icon-btn" id="themeBtn" aria-label="Cambiar tema claro/oscuro">🌙</button>
+  </div>
+</header>
+<div class="banner" id="banner" role="status"></div>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div id="embers" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="kicker">3 días · 2 noches · junto al río</span>
+    <h1>El Campamentazo 2026 🏕️🌿</h1>
+    <p class="lead">Un fin de semana largo con los amigos: fogata, río, risas y cero apuro. Confirma que vienes, elige dónde dormir y ayúdanos a armar el itinerario entre todos.</p>
+    <div class="stats">
+      <div class="stat"><b>3</b><span>días</span></div>
+      <div class="stat"><b>2</b><span>noches</span></div>
+      <div class="stat"><b id="heroCount">0</b><span>confirmados</span></div>
+    </div>
+    <div class="cta">
+      <a class="btn btn-fire" href="#rsvp"><span class="flame">🔥</span> Confirmar asistencia</a>
+      <a class="btn btn-ghost" href="#actividades">Votar actividades</a>
+    </div>
+
+    <div class="stay">
+      <p class="stay-title">¿Dónde dormimos? Cada grupo elige o propone lo suyo</p>
+      <div class="stay-grid">
+        <div class="stay-card"><div class="em">⛺</div><h3>Carpas junto al río</h3><p>Lleva tu carpa y arma campamento a orillas del agua. Dormir con el sonido del río incluido.</p></div>
+        <div class="stay-card"><div class="em">🛖</div><h3>Todos acurrucados</h3><p>Dormir juntos en la casa/sede: colchonetas, frazadas y conversa hasta tarde.</p></div>
+        <div class="stay-card"><div class="em">🪵</div><h3>Cabañas</h3><p>Más comodidad y techo firme para quienes prefieren una cama de verdad.</p></div>
+      </div>
+    </div>
+  </div>
+  <svg class="scene" id="scene" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+    <path class="trees" id="trees"/>
+    <path class="river" d="M0 96 Q150 80 300 96 T600 96 T900 96 T1200 96 L1200 120 L0 120Z"/>
+    <path class="edge" d="M0 108 Q150 96 300 108 T600 108 T900 108 T1200 108 L1200 120 L0 120Z"/>
+  </svg>
+</section>
+
+<!-- 2. RSVP -->
+<section class="block" id="rsvp">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Paso 1</span>
+      <h2>¿Quiénes vamos? 🙌</h2>
+      <p>Anótate, cuéntanos cómo prefieres dormir y deja tus ideas de logística. Todo se ve en vivo para el resto del grupo.</p>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <div class="card reveal needs-write">
+          <h3>Me apunto 🔥</h3>
+          <p class="sub">Puedes anotar a alguien más si te lo pidió.</p>
+
+          <label class="f" for="gName">Nombre</label>
+          <input class="in js-name-first" id="gName" maxlength="40" placeholder="Ej: Nacho" autocomplete="given-name">
+
+          <label class="f">¿Cómo te gustaría dormir?</label>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="sleep" value="carpa"><span>⛺ <b>Carpa</b><small>al lado del río</small></span></label>
+            <label class="opt"><input type="radio" name="sleep" value="casa"><span>🛖 <b>Casa / sede</b><small>todos acurrucados</small></span></label>
+            <label class="opt"><input type="radio" name="sleep" value="cabana"><span>🪵 <b>Cabaña</b><small>con techo y cama</small></span></label>
+            <label class="opt"><input type="radio" name="sleep" value="duda" checked><span>🤔 <b>Aún no sé</b><small>lo decidimos juntos</small></span></label>
+          </div>
+
+          <label class="f" for="gPlan">Tu propuesta de organización (opcional)</label>
+          <input class="in" id="gPlan" maxlength="200" placeholder="Ej: llevo carpa para 3, nos juntamos con los de Valdivia…">
+
+          <div class="row-actions">
+            <button class="btn btn-primary" id="gAdd">Confirmar asistencia</button>
+          </div>
+        </div>
+
+        <div class="card remind reveal">
+          <h3>💭 ¿A quién más deberíamos invitar?</h3>
+          <p class="sub">Piensa en quién falta en la lista. Deja el nombre y lo vemos entre todos.</p>
+          <div class="inline needs-write">
+            <input class="in" id="invName" maxlength="40" placeholder="Nombre de alguien que falta">
+            <button class="btn btn-soft" id="invAdd">Sugerir</button>
+          </div>
+          <div class="tally" id="inviteChips" style="margin-top:14px"></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:12px">
+          <div><h3>Lista de confirmados</h3><p class="sub" style="margin:0">Quiénes van hasta ahora</p></div>
+          <div class="count" id="listCount">0</div>
+        </div>
+        <div class="tally" id="sleepTally"></div>
+        <ul class="glist" id="guestList"></ul>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-top:16px">
+      <h3>🏠 Sugerencias de hospedaje y logística</h3>
+      <p class="sub">¿Quién lleva carpa? ¿Alcanzan las camas? ¿Colchonetas, frazadas, transporte? Escribe lo que se te ocurra.</p>
+      <div class="needs-write">
+        <label class="f" for="lodgeName">Tu nombre</label>
+        <input class="in js-name" id="lodgeName" maxlength="40" placeholder="Tu nombre">
+        <label class="f" for="lodgeText">Tu sugerencia</label>
+        <textarea class="in" id="lodgeText" maxlength="600" placeholder="Ej: propongo que las carpas vayan cerca del fogón y la casa quede para quienes tengan frío…"></textarea>
+        <div class="row-actions"><button class="btn btn-primary" id="lodgeAdd">Dejar sugerencia</button></div>
+      </div>
+      <div class="feed" id="lodgeFeed"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ACTIVIDADES -->
+<section class="block" id="actividades">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">Paso 2</span>
+      <h2>¿Qué hacemos? 🌲</h2>
+      <p>Esto aún está en discusión. Marca lo que te tienta y en qué día te gustaría hacerlo (puedes elegir varios). Se suman los votos de todos.</p>
+    </div>
+
+    <div class="card reveal needs-write" style="margin-bottom:16px">
+      <label class="f" for="voteName" style="margin-top:0">Tu nombre para votar</label>
+      <input class="in js-name" id="voteName" maxlength="40" placeholder="Tu nombre">
+    </div>
+
+    <div class="acts" id="acts"></div>
+
+    <div class="card reveal" style="margin-top:18px">
+      <h3>💡 Ideas, equipos y días</h3>
+      <p class="sub">Propón actividades nuevas, arma los equipos (yimcana, voleibol…) o decide qué día se hace cada cosa.</p>
+      <div class="needs-write">
+        <label class="f" for="actName">Tu nombre</label>
+        <input class="in js-name" id="actName" maxlength="40" placeholder="Tu nombre">
+        <label class="f" for="actText">Tu idea o propuesta</label>
+        <textarea class="in" id="actText" maxlength="600" placeholder="Ej: Equipo Rojo vs. Equipo Verde en la yimcana, kayak el día 2 en la mañana…"></textarea>
+        <div class="row-actions"><button class="btn btn-primary" id="actAdd">Proponer</button></div>
+      </div>
+      <div class="feed" id="actFeed"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="btns">
+      <button class="btn btn-soft" id="copyBtn">📋 Copiar resumen</button>
+      <a class="btn btn-soft" id="waBtn" href="https://wa.me/" target="_blank" rel="noopener">💬 Enviar por WhatsApp</a>
+    </div>
+    <p>Hecho con 🔥 para los amigos del río · Campamentazo 2026</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+
+  /* ---------- helpers ---------- */
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var esc = function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var lsGet = function(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}};
+  var lsSet = function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  var newId = function(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36)};
+  var clone = function(o){return JSON.parse(JSON.stringify(o))};
+  var PALETTE = ['#6f8f57','#b5652d','#4f7a8a','#9a5b7a','#7a6a3a','#5a6fa0','#a0522d','#3f7d6a'];
+  var color = function(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))>>>0;return PALETTE[h%PALETTE.length]};
+  var initial = function(n){return (n||'?').trim().charAt(0).toUpperCase()||'?'};
+  var ago = function(ts){
+    if(!ts) return '';
+    var m=Math.round((Date.now()-ts)/60000);
+    if(m<1) return 'ahora mismo'; if(m<60) return 'hace '+m+' min';
+    var h=Math.round(m/60); if(h<24) return 'hace '+h+' h';
+    return 'hace '+Math.round(h/24)+' d';
+  };
+
+  /* ---------- datos fijos ---------- */
+  var ACTS = [
+    {k:'trekking',e:'🥾',t:'Trekking',d:'Caminata por senderos del río y el bosque, con parada para fotos.'},
+    {k:'juegos',e:'🎲',t:'Juegos y apuestas',d:'Cartas, retos y apuestas con castigos creativos.'},
+    {k:'yimcana',e:'🧭',t:'Yimcanas',d:'Pruebas por equipos, pistas escondidas y mucha picardía.'},
+    {k:'kayak',e:'🛶',t:'Kayak',d:'Remar río abajo… o al menos intentarlo con dignidad.'},
+    {k:'voley',e:'🏐',t:'Voleibol',d:'Red entre los árboles y equipos armados al azar.'},
+    {k:'tomatera',e:'🌊',t:'Tarde de río / Tomatera',d:'Pies en el agua, algo rico en la mano y cero apuro.'},
+    {k:'diablo',e:'🌲',t:'Machetear el diablo en el monte',d:'Machete en mano, leyenda campestre y harto drama (con espacio y cuidado para todos).'}
+  ];
+  var SLEEP = {carpa:'⛺ Carpa',casa:'🛖 Casa / sede',cabana:'🪵 Cabaña',duda:'🤔 Aún no sé'};
+
+  /* ---------- estado ---------- */
+  var S = {guests:[],notes:[],votes:[]};
+  var COLS = ['guests','notes','votes'];
+  var mode = 'local', dbh = null, readOnly = false, isAdmin = false;
+  var uid = lsGet('camp26_uid') || ('u'+newId()); lsSet('camp26_uid',uid);
+  var myName = lsGet('camp26_name') || '';
+  var local = lsGet('camp26_local') || {};
+  COLS.forEach(function(c){local[c]=local[c]||{}});
+  var voteQ = Promise.resolve();
+
+  function fromLocal(){
+    COLS.forEach(function(c){
+      S[c] = Object.keys(local[c]).map(function(id){var o=clone(local[c][id]);o.id=id;return o});
+    });
+  }
+
+  /* ---------- capa de almacenamiento (compartido o local) ---------- */
+  function fail(e){
+    var code = e && e.code;
+    if(code==='invalid_argument' || code==='capability_disabled' || code==='not_granted'){
+      readOnly = true; render();
+      toast('Solo lectura: pídele a quien organiza que te invite como colaborador para poder escribir.');
+    } else if(code==='quota_exceeded'){ toast('La base de datos está llena 😬 Avísale al organizador.'); }
+    else { toast('No se pudo guardar. Intenta de nuevo en un momento.'); }
+  }
+  function put(c,id,data){
+    if(mode==='shared'){
+      return dbh.collection(c).doc(id).set(data).then(function(){return true},function(e){fail(e);return false});
+    }
+    local[c][id]=data; lsSet('camp26_local',local); fromLocal(); render();
+    return Promise.resolve(true);
+  }
+  function del(c,id){
+    if(mode==='shared'){
+      return dbh.collection(c).doc(id).delete().then(function(){return true},function(e){fail(e);return false});
+    }
+    delete local[c][id]; lsSet('camp26_local',local); fromLocal(); render();
+    return Promise.resolve(true);
+  }
+
+  function connect(){
+    try{
+      if(!window.claude || !window.claude.use) return;
+      Promise.all([window.claude.use('db'), window.claude.use('user')]).then(function(r){
+        var db=r[0], user=r[1];
+        if(!db) return;
+        var step = Promise.resolve();
+        if(user){
+          step = Promise.resolve().then(function(){return user.id()}).then(function(id){if(id) uid=id}).catch(function(){})
+            .then(function(){return user.can('data.write')}).then(function(ok){if(ok===false) readOnly=true}).catch(function(){})
+            .then(function(){try{isAdmin=!!user.canEdit()}catch(e){}});
+        }
+        return step.then(function(){
+          dbh=db; mode='shared'; S={guests:[],notes:[],votes:[]};
+          COLS.forEach(function(c){
+            db.collection(c).onSnapshot(function(snap){
+              S[c]=snap.docs.map(function(d){var o=Object.assign({},d.data());o.id=d.id;return o});
+              render();
+            },function(){ /* si se cae la suscripción, la página sigue visible con lo último */ });
+          });
+          render();
+        });
+      }).catch(function(){});
+    }catch(e){}
+  }
+
+  /* ---------- UI helpers ---------- */
+  var toastT;
+  function toast(msg){
+    var t=$('#toast'); t.textContent=msg; t.classList.add('show');
+    clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove('show')},3200);
+  }
+  function setName(n){
+    myName=n.trim().slice(0,40); lsSet('camp26_name',myName);
+    $$('.js-name').forEach(function(i){if(i!==document.activeElement) i.value=myName});
+  }
+  function needName(el){
+    if(myName) return true;
+    toast('Primero escribe tu nombre 🙂'); if(el) el.focus(); return false;
+  }
+
+  /* ---------- render ---------- */
+  function render(){
+    document.body.classList.toggle('ro',readOnly);
+    renderBanner(); renderHeroAndList(); renderInvites();
+    renderFeed('lodging','#lodgeFeed','Aún no hay sugerencias. ¡Sé el primero!');
+    renderFeed('activity','#actFeed','Aún no hay ideas. ¡Suelta la primera!');
+    renderActs(); updateShare();
+  }
+
+  function renderBanner(){
+    var b=$('#banner');
+    if(readOnly){ b.className='banner show ro'; b.textContent='👀 Estás en modo solo lectura: puedes ver todo, pero para participar pídele al organizador que te invite como colaborador.'; }
+    else if(mode==='shared'){ b.className='banner show shared'; b.textContent='🟢 En vivo: lo que escriba cualquiera del grupo aparece aquí al instante.'; }
+    else { b.className='banner show local'; b.textContent='📍 Modo local: por ahora solo ves lo que anotas en este dispositivo. Al conectarse, se comparte con el grupo.'; }
+  }
+
+  function renderHeroAndList(){
+    var g=S.guests.slice().sort(function(a,b){return (a.ts||0)-(b.ts||0)});
+    $('#heroCount').textContent=g.length; $('#listCount').textContent=g.length;
+    var tally={carpa:0,casa:0,cabana:0,duda:0};
+    g.forEach(function(x){tally[x.sleep in tally?x.sleep:'duda']++});
+    $('#sleepTally').innerHTML = Object.keys(tally).map(function(k){
+      return '<span class="chip">'+SLEEP[k]+' · <b>'+tally[k]+'</b></span>';
+    }).join('');
+    var ul=$('#guestList');
+    if(!g.length){ ul.innerHTML='<li class="empty">Nadie se ha anotado todavía. ¡Anímate a ser el primero! 🔥</li>'; return; }
+    ul.innerHTML = g.map(function(x){
+      var mine = x.uid===uid, canDel = mine || isAdmin;
+      return '<li class="g"><span class="av" style="--c:'+color(x.name||'')+'">'+esc(initial(x.name))+'</span>'+
+        '<div class="meta"><div class="nm">'+esc(x.name)+(mine?'<em>tú</em>':'')+'</div>'+
+        (x.plan?'<div class="pl">'+esc(x.plan)+'</div>':'')+'</div>'+
+        '<span class="sl">'+esc(SLEEP[x.sleep]||SLEEP.duda)+'</span>'+
+        (canDel?'<button class="mini needs-write" data-del="guests" data-id="'+esc(x.id)+'" aria-label="Quitar a '+esc(x.name)+'">✕</button>':'')+'</li>';
+    }).join('');
+  }
+
+  function renderInvites(){
+    var n=S.notes.filter(function(x){return x.kind==='invite'}).sort(function(a,b){return (a.ts||0)-(b.ts||0)});
+    $('#inviteChips').innerHTML = n.length ? n.map(function(x){
+      var canDel = x.uid===uid || isAdmin;
+      return '<span class="chip x">'+esc(x.text)+(canDel?'<button class="del needs-write" data-del="notes" data-id="'+esc(x.id)+'" aria-label="Quitar sugerencia">✕</button>':'')+'</span>';
+    }).join('') : '<span class="empty" style="padding:0">Sin sugerencias aún.</span>';
+  }
+
+  function renderFeed(kind,sel,emptyMsg){
+    var n=S.notes.filter(function(x){return x.kind===kind}).sort(function(a,b){return (b.ts||0)-(a.ts||0)});
+    $(sel).innerHTML = n.length ? n.map(function(x){
+      var canDel = x.uid===uid || isAdmin;
+      return '<div class="note"><div class="by"><span class="av" style="--c:'+color(x.author||'')+';width:26px;height:26px;font-size:.7rem">'+esc(initial(x.author))+'</span><b>'+esc(x.author||'Anónimo')+'</b><span>· '+ago(x.ts)+'</span>'+
+        (canDel?'<button class="mini needs-write" style="margin-left:auto" data-del="notes" data-id="'+esc(x.id)+'">Borrar</button>':'')+'</div>'+
+        '<p>'+esc(x.text)+'</p></div>';
+    }).join('') : '<div class="empty">'+emptyMsg+'</div>';
+  }
+
+  function renderActs(){
+    var mine = S.votes.filter(function(v){return v.id===uid})[0] || {likes:{},days:{}};
+    $('#acts').innerHTML = ACTS.map(function(a){
+      var likers = S.votes.filter(function(v){return v.likes && v.likes[a.k]});
+      var cnt = {1:0,2:0,3:0};
+      S.votes.forEach(function(v){((v.days&&v.days[a.k])||[]).forEach(function(d){if(cnt[d]!=null) cnt[d]++})});
+      var max=Math.max(cnt[1],cnt[2],cnt[3]);
+      var top=[1,2,3].filter(function(d){return cnt[d]===max});
+      var lead = max>0 ? (top.length===1 ? 'Va ganando el día '+top[0] : 'Empate entre días '+top.join(' y ')) : '';
+      var liked = !!(mine.likes && mine.likes[a.k]);
+      var myDays = (mine.days && mine.days[a.k]) || [];
+      return '<article class="act reveal in '+(liked?'on':'')+'">'+
+        '<div class="act-top"><span class="act-e">'+a.e+'</span><div><h3>'+a.t+'</h3><p>'+a.d+'</p></div></div>'+
+        '<button class="like needs-write '+(liked?'on':'')+'" data-act="like" data-k="'+a.k+'" aria-pressed="'+liked+'">'+(liked?'✅ Me anoto':'👍 Me interesa')+' <span class="n">'+likers.length+'</span></button>'+
+        '<div class="days" role="group" aria-label="Día preferido para '+a.t+'"><span>¿Qué día?</span>'+
+          [1,2,3].map(function(d){
+            var on=myDays.indexOf(String(d))>-1;
+            return '<button class="day needs-write '+(on?'on':'')+'" data-act="day" data-k="'+a.k+'" data-d="'+d+'" aria-pressed="'+on+'">Día '+d+' <i>'+cnt[d]+'</i></button>';
+          }).join('')+'</div>'+
+        '<div class="lead-day">'+lead+'</div>'+
+        '<div class="who">'+likers.slice(0,7).map(function(v){return '<span class="av" title="'+esc(v.name)+'" style="--c:'+color(v.name||'')+'">'+esc(initial(v.name))+'</span>'}).join('')+
+          (likers.length>7?'<span class="more">+'+(likers.length-7)+'</span>':'')+'</div>'+
+      '</article>';
+    }).join('');
+  }
+
+  /* ---------- acciones ---------- */
+  function addGuest(){
+    var nameEl=$('#gName'), name=nameEl.value.trim().slice(0,40);
+    if(!name){ toast('Escribe tu nombre para anotarte'); nameEl.focus(); return; }
+    var dup=S.guests.some(function(g){return (g.name||'').toLowerCase()===name.toLowerCase()});
+    if(dup){ toast(name+' ya está en la lista 😉'); return; }
+    var sl=($('input[name=sleep]:checked')||{}).value||'duda';
+    var plan=$('#gPlan').value.trim().slice(0,200);
+    if(!myName) setName(name);
+    put('guests',newId(),{name:name,sleep:sl,plan:plan,uid:uid,ts:Date.now()}).then(function(ok){
+      if(!ok) return;
+      nameEl.value=''; $('#gPlan').value=''; toast('¡Anotado, '+name+'! Nos vemos en el río 🔥');
+    });
+  }
+  function addNote(kind,text,author,after){
+    text=text.trim(); author=(author||'').trim().slice(0,40);
+    put('notes',newId(),{kind:kind,text:text.slice(0,600),author:author,uid:uid,ts:Date.now()}).then(function(ok){if(ok&&after)after()});
+  }
+  function addInvite(){
+    var el=$('#invName'), v=el.value.trim();
+    if(!v){ el.focus(); return; }
+    var dup=S.notes.some(function(n){return n.kind==='invite' && (n.text||'').toLowerCase()===v.toLowerCase()});
+    if(dup){ toast('Esa persona ya está sugerida 👍'); return; }
+    addNote('invite',v.slice(0,40),myName,function(){el.value=''; toast('Sugerencia guardada 💭')});
+  }
+  function addLongNote(kind,nameSel,textSel){
+    var nEl=$(nameSel), tEl=$(textSel);
+    if(!nEl.value.trim()){ toast('Escribe tu nombre primero 🙂'); nEl.focus(); return; }
+    if(!tEl.value.trim()){ toast('Escribe tu sugerencia'); tEl.focus(); return; }
+    setName(nEl.value);
+    addNote(kind,tEl.value,myName,function(){tEl.value=''; toast('¡Gracias por aportar! 🌿')});
+  }
+  function saveVote(mut){
+    var base = S.votes.filter(function(v){return v.id===uid})[0] || {};
+    var cur = {likes:clone(base.likes||{}), days:clone(base.days||{})};
+    mut(cur);
+    return put('votes',uid,{name:myName,likes:cur.likes,days:cur.days,ts:Date.now()});
+  }
+
+  /* ---------- eventos ---------- */
+  document.addEventListener('click',function(e){
+    var d=e.target.closest('[data-del]');
+    if(d){
+      if(d.dataset.armed){ del(d.dataset.del,d.dataset.id); return; }
+      d.dataset.armed='1'; var old=d.textContent; d.textContent='¿Seguro?';
+      setTimeout(function(){ if(d.isConnected){delete d.dataset.armed; d.textContent=old} },3000);
+      return;
+    }
+    var b=e.target.closest('button[data-act]');
+    if(b){
+      if(!needName($('#voteName'))){ $('#voteName').scrollIntoView({behavior:'smooth',block:'center'}); return; }
+      var k=b.dataset.k;
+      if(b.dataset.act==='like'){
+        voteQ=voteQ.then(function(){return saveVote(function(c){ if(c.likes[k]) delete c.likes[k]; else c.likes[k]=true; })});
+      } else {
+        var day=b.dataset.d;
+        voteQ=voteQ.then(function(){return saveVote(function(c){
+          var arr=c.days[k]||[]; var i=arr.indexOf(day);
+          if(i>-1) arr.splice(i,1); else arr.push(day);
+          c.days[k]=arr; if(arr.length) c.likes[k]=true;
+        })});
+      }
+    }
+  });
+  $('#gAdd').addEventListener('click',addGuest);
+  $('#gName').addEventListener('keydown',function(e){if(e.key==='Enter')addGuest()});
+  $('#gPlan').addEventListener('keydown',function(e){if(e.key==='Enter')addGuest()});
+  $('#invAdd').addEventListener('click',addInvite);
+  $('#invName').addEventListener('keydown',function(e){if(e.key==='Enter')addInvite()});
+  $('#lodgeAdd').addEventListener('click',function(){addLongNote('lodging','#lodgeName','#lodgeText')});
+  $('#actAdd').addEventListener('click',function(){addLongNote('activity','#actName','#actText')});
+  $$('.js-name').forEach(function(i){
+    i.value=myName;
+    i.addEventListener('input',function(){ myName=i.value.trim().slice(0,40); lsSet('camp26_name',myName); $$('.js-name').forEach(function(o){if(o!==i)o.value=i.value}); });
+  });
+
+  /* ---------- compartir ---------- */
+  function summary(){
+    var L=['🏕️ El Campamentazo 2026 — 3 días, 2 noches junto al río',''];
+    var g=S.guests.slice().sort(function(a,b){return (a.ts||0)-(b.ts||0)});
+    L.push('Confirmados ('+g.length+'): '+(g.map(function(x){return x.name}).join(', ')||'todavía nadie'));
+    var t={carpa:0,casa:0,cabana:0,duda:0}; g.forEach(function(x){t[x.sleep in t?x.sleep:'duda']++});
+    L.push('Dormir: ⛺ '+t.carpa+' carpa · 🛖 '+t.casa+' casa · 🪵 '+t.cabana+' cabaña · 🤔 '+t.duda+' por definir');
+    var top=ACTS.map(function(a){return {t:a.t,n:S.votes.filter(function(v){return v.likes&&v.likes[a.k]}).length}})
+      .filter(function(x){return x.n>0}).sort(function(a,b){return b.n-a.n}).slice(0,4);
+    if(top.length) L.push('Actividades más votadas: '+top.map(function(x){return x.t+' ('+x.n+')'}).join(', '));
+    var inv=S.notes.filter(function(n){return n.kind==='invite'}).map(function(n){return n.text});
+    if(inv.length) L.push('Por invitar: '+inv.join(', '));
+    return L.join('\n');
+  }
+  function updateShare(){ $('#waBtn').href='https://wa.me/?text='+encodeURIComponent(summary()); }
+  $('#copyBtn').addEventListener('click',function(){
+    var txt=summary();
+    function fallback(){
+      var ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{document.execCommand('copy'); toast('Resumen copiado 📋')}catch(e){toast('No se pudo copiar')}
+      ta.remove();
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){toast('Resumen copiado 📋')},fallback);
+    } else fallback();
+  });
+
+  /* ---------- tema ---------- */
+  var themeBtn=$('#themeBtn');
+  function applyTheme(t){ document.documentElement.setAttribute('data-theme',t); themeBtn.textContent=(t==='dark'?'☀️':'🌙'); }
+  var dark0 = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(lsGet('camp26_theme') || (dark0?'dark':'light'));
+  themeBtn.addEventListener('click',function(){
+    var t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+    applyTheme(t); lsSet('camp26_theme',t);
+  });
+
+  /* ---------- decoración: pinos y brasas ---------- */
+  (function(){
+    var d='M0 120 L0 74', x=0, i=0;
+    while(x<=1240){
+      var h=34+((i*53)%31);
+      d+=' L'+(x-26)+' 74 L'+x+' '+(74-h)+' L'+(x+26)+' 74';
+      x+=22+((i*17)%14); i++;
+    }
+    d+=' L1200 74 L1200 120 Z';
+    $('#trees').setAttribute('d',d);
+    var box=$('#embers');
+    for(var j=0;j<14;j++){
+      var s=document.createElement('span'); s.className='ember';
+      s.style.left=(8+((j*37)%84))+'%';
+      s.style.animationDuration=(4+((j*13)%6))+'s';
+      s.style.animationDelay=(-(j*0.7))+'s';
+      box.appendChild(s);
+    }
+  })();
+
+  /* ---------- aparecer al hacer scroll ---------- */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(en){ if(en.isIntersecting){en.target.classList.add('in'); io.unobserve(en.target)} });
+    },{threshold:.08});
+    $$('.reveal').forEach(function(el){io.observe(el)});
+  } else { $$('.reveal').forEach(function(el){el.classList.add('in')}); }
+
+  /* ---------- arranque ---------- */
+  fromLocal(); render(); connect();
+})();
+</script>
+</body>
+</html>
